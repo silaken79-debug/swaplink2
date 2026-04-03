@@ -1,0 +1,97 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Products – SwapLink Integrated{% endblock %}
+
+{% block content %}
+
+<!-- Products Hero -->
+<section class="products-hero">
+    <div class="container">
+        <div class="products-hero-content">
+            <h1>Products that <span class="gradient-text">power your world</span></h1>
+            <p class="products-hero-description">
+                From finding trusted local pros to running payroll for your team,<br>
+                SwapLink Integrated has a solution for every need.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Filter Tabs (Optional - shows active vs coming soon) -->
+<section class="products-filter">
+    <div class="container">
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All Products</button>
+            <button class="filter-tab" data-filter="active">Available Now</button>
+            <button class="filter-tab" data-filter="coming-soon">Coming Soon</button>
+        </div>
+    </div>
+</section>
+
+<!-- Products Grid -->
+<section class="products-page-grid">
+    <div class="container">
+        <div class="all-products">
+            {% for product in products_list %}
+            <div class="product-detailed-card" data-status="{{ product.status }}">
+                <div class="product-card-icon">
+                    <i class="fas {{ product.icon }}"></i>
+                </div>
+                <div class="product-card-content">
+                    <div class="product-card-header">
+                        <h2>{{ product.name }}</h2>
+                        {% if product.status == 'coming-soon' %}
+                            <span class="product-badge coming-soon">Coming Soon</span>
+                        {% else %}
+                            <span class="product-badge active">Available Now</span>
+                        {% endif %}
+                    </div>
+                    <p class="product-tagline">{{ product.tagline }}</p>
+                    <p class="product-description-full">{{ product.description }}</p>
+                    
+                    <div class="product-features">
+                        <h4>Key features</h4>
+                        <ul>
+                            {% for feature in product.features %}
+                            <li><i class="fas fa-check-circle"></i> {{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                    <div class="product-audience">
+                        {% if product.for_users %}
+                            <span class="audience-tag"><i class="fas fa-user"></i> For Individuals</span>
+                        {% endif %}
+                        {% if product.for_business %}
+                            <span class="audience-tag"><i class="fas fa-building"></i> For Businesses</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="product-actions">
+                        <a href="{{ product.learn_more_url }}" class="button-outline">Learn more</a>
+                        {% if product.get_started_url %}
+                            <a href="{{ product.get_started_url }}" class="button-primary">Get started</a>
+                        {% else %}
+                            <a href="/contact/" class="button-primary">Notify me</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Not sure which product is right for you?</h2>
+            <p>Talk to our team. We will help you find the perfect solution.</p>
+            <a href="/contact/" class="button-primary">Contact sales</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

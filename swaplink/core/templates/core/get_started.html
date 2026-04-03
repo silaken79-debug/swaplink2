@@ -1,0 +1,208 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Get Started – SwapLink Integrated{% endblock %}
+
+{% block content %}
+
+<!-- Get Started Hero -->
+<section class="getstarted-hero">
+    <div class="container">
+        <div class="getstarted-hero-content">
+            <h1>Start your journey with <span class="gradient-text">SwapLink Integrated</span></h1>
+            <p class="getstarted-hero-description">
+                Join thousands of individuals and businesses who trust us to simplify<br>
+                services, events, gifting, and payroll.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Two Column Layout -->
+<section class="getstarted-main">
+    <div class="container">
+        <div class="getstarted-grid">
+            <!-- Left Column: Signup Form -->
+            <div class="signup-form-container">
+                <div class="form-header">
+                    <h2>Create your account</h2>
+                    <p>Start using SwapLink Integrated today. No credit card required.</p>
+                </div>
+                
+                <form id="signupForm" class="signup-form">
+                    {% csrf_token %}
+                    
+                    <!-- Account Type Selection -->
+                    <div class="form-group">
+                        <label>I am a...</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="account_type" value="individual" checked>
+                                <span class="radio-custom"></span>
+                                <i class="fas fa-user"></i> Individual
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="account_type" value="business">
+                                <span class="radio-custom"></span>
+                                <i class="fas fa-building"></i> Business
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullname">Full name</label>
+                        <input type="text" id="fullname" name="fullname" required placeholder="John Doe">
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email" name="email" required placeholder="hello@example.com">
+                    </div>
+                    
+                    <!-- Phone (optional) -->
+                    <div class="form-group">
+                        <label for="phone">Phone number (optional)</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+254 700 000000">
+                    </div>
+                    
+                    <!-- Product Interest -->
+                    <div class="form-group">
+                        <label for="product">I'm interested in</label>
+                        <select id="product" name="product">
+                            <option value="">Select a product (optional)</option>
+                            {% for product in products_for_select %}
+                            <option value="{{ product.value }}" {% if selected_product == product.value %}selected{% endif %}>
+                                {{ product.label }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <!-- How did you hear about us -->
+                    <div class="form-group">
+                        <label for="referral">How did you hear about us?</label>
+                        <select id="referral" name="referral">
+                            <option value="">Select an option</option>
+                            <option value="search">Search engine</option>
+                            <option value="social">Social media</option>
+                            <option value="friend">Friend or colleague</option>
+                            <option value="ad">Online advertisement</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Terms Agreement -->
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="terms" required>
+                            <span class="checkbox-custom"></span>
+                            I agree to the <a href="/terms/">Terms of Service</a> and <a href="/privacy/">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="button-primary submit-btn">
+                        <span class="btn-text">Get started for free</span>
+                        <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                    
+                    <p class="form-footnote">
+                        <i class="fas fa-shield-alt"></i> Your information is secure. We will never share your data.
+                    </p>
+                </form>
+                
+                <!-- Success Message (hidden initially) -->
+                <div id="successMessage" class="success-message" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank you for signing up!</h3>
+                    <p>We have sent a confirmation email to <span id="successEmail"></span>. Please check your inbox to get started.</p>
+                    <a href="/" class="button-outline">Return to home</a>
+                </div>
+            </div>
+            
+            <!-- Right Column: Benefits -->
+            <div class="benefits-container">
+                <div class="benefits-header">
+                    <h2>Why join SwapLink Integrated?</h2>
+                    <p>Everything you need in one integrated platform</p>
+                </div>
+                
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Start for free</h3>
+                            <p>No credit card required. Free forever plan includes basic features for individuals.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Scale as you grow</h3>
+                            <p>Upgrade to premium plans when you need more features or higher limits.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>24/7 support</h3>
+                            <p>Our support team is always here to help you succeed.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Secure and reliable</h3>
+                            <p>Enterprise-grade security with 99.9% uptime guarantee.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>One account, all products</h3>
+                            <p>Single login for marketplace, events, eGifts, and payroll.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trust indicators -->
+<div class="trust-indicators">
+    <div class="trust-stat">
+        <span class="trust-number">XX,XXX+</span>
+        <span class="trust-label">Active Users</span>
+    </div>
+    <div class="trust-stat">
+        <span class="trust-number">XXX+</span>
+        <span class="trust-label">Businesses</span>
+    </div>
+    <div class="trust-stat">
+        <span class="trust-number">XX%</span>
+        <span class="trust-label">Satisfaction</span>
+    </div>
+    <div class="trust-stat">
+        <span class="trust-number">X+</span>
+        <span class="trust-label">Years</span>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

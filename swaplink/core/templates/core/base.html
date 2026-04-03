@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwapLink Integrated – Smart Digital Solutions</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- Modern Navbar -->
+    <header class="site-header" id="mainHeader">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="/" class="logo">
+                    <span class="logo-text">SwapLink</span>
+                    <span class="logo-badge">Integrated</span>
+                </a>
+                
+                <nav class="primary-nav">
+                    <a href="/" class="nav-link active">Home</a>
+                    <a href="/products/" class="nav-link">Products</a>
+                    <a href="/for-business/" class="nav-link">For Business</a>
+                    <a href="/about/" class="nav-link">About</a>
+                </nav>
+                
+                <a href="/get-started/" class="button-outline">Get Started</a>
+                
+                <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <div class="mobile-nav" id="mobileNav">
+                <nav class="mobile-nav-links">
+                    <a href="/" class="mobile-nav-link">Home</a>
+                    <a href="/products/" class="mobile-nav-link">Products</a>
+                    <a href="/for-business/" class="mobile-nav-link">For Business</a>
+                    <a href="/about/" class="mobile-nav-link">About</a>
+                    <a href="/get-started/" class="mobile-nav-link mobile-cta">Get Started</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <!-- Main Footer Grid -->
+            <div class="footer-grid">
+                <!-- Column 1: Company Info -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-text">SwapLink</span>
+                        <span class="logo-badge">Integrated</span>
+                    </div>
+                    <p class="footer-description">
+                        Building smart digital solutions that connect people, services, and businesses efficiently.
+                    </p>
+                    <div class="office-address">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>ABC Place, Waiyaki Way, Westlands, Nairobi</span>
+                    </div>
+                    <div class="office-contact">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:hello@swaplink.com">hello@swaplink.com</a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Products -->
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="/products/marketplace/">Services Marketplace</a></li>
+                        <li><a href="/products/events/">Events and Ticketing</a></li>
+                        <li><a href="/products/egift/">eGift Platform</a></li>
+                        <li><a href="/products/payroll/">Smart Payroll and HR</a></li>
+                        <li><a href="/products/coming-soon/">More Products</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Company -->
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/careers/">Careers</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/press/">Press</a></li>
+                        <li><a href="/contact/">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Resources -->
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="/help/">Help Center</a></li>
+                        <li><a href="/developers/">Developers</a></li>
+                        <li><a href="/privacy/">Privacy Policy</a></li>
+                        <li><a href="/terms/">Terms of Service</a></li>
+                        <li><a href="/security/">Security</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 5: Social & Newsletter -->
+                <div class="footer-col">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://linkedin.com/company/swaplink" target="_blank" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://tiktok.com/@swaplink" target="_blank" class="social-link" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://instagram.com/swaplink" target="_blank" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="/blog/" class="social-link" aria-label="Blog">
+                            <i class="fas fa-blog"></i>
+                        </a>
+                    </div>
+                    <div class="newsletter">
+                        <p class="newsletter-text">Subscribe to our newsletter</p>
+                        <form class="newsletter-form" action="/subscribe/" method="POST">
+                            {% csrf_token %}
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 SwapLink Integrated. All rights reserved.</p>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="/accessibility/">Accessibility</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

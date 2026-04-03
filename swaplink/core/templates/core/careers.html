@@ -1,0 +1,170 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Careers – SwapLink Integrated{% endblock %}
+
+{% block content %}
+
+<!-- Careers Hero -->
+<section class="careers-hero">
+    <div class="container">
+        <div class="careers-hero-content">
+            <div class="hero-badge">
+                <span class="badge-text">Join our team</span>
+            </div>
+            <h1>Build the future of <span class="gradient-text">digital integration</span></h1>
+            <p class="careers-hero-description">
+                We are looking for passionate people to help us connect services,<br>
+                businesses, and people through innovative technology.
+            </p>
+            <div class="hero-actions">
+                <a href="#open-positions" class="button-primary">View open positions</a>
+                <a href="#culture" class="button-outline">Learn about our culture</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Culture Section -->
+<section id="culture" class="culture-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Life at SwapLink Integrated</h2>
+            <p>We are builders, innovators, and problem-solvers</p>
+        </div>
+        <div class="culture-grid">
+            <div class="culture-card">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Innovation First</h3>
+                <p>We encourage creative thinking and reward bold ideas that push boundaries.</p>
+            </div>
+            <div class="culture-card">
+                <i class="fas fa-users"></i>
+                <h3>Collaborative Spirit</h3>
+                <p>Great things happen when talented people work together toward a common goal.</p>
+            </div>
+            <div class="culture-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Growth Mindset</h3>
+                <p>We invest in your development through learning opportunities and mentorship.</p>
+            </div>
+            <div class="culture-card">
+                <i class="fas fa-balance-scale"></i>
+                <h3>Work-Life Balance</h3>
+                <p>Flexible schedules and remote options to help you do your best work.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Perks Section -->
+<section class="perks-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Perks and benefits</h2>
+            <p>We take care of our team so you can focus on what matters</p>
+        </div>
+        <div class="perks-grid">
+            {% for perk in perks %}
+            <div class="perk-card">
+                <i class="fas {{ perk.icon }}"></i>
+                <h3>{{ perk.title }}</h3>
+                <p>{{ perk.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Open Positions Section -->
+<section id="open-positions" class="positions-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Open positions</h2>
+            <p>Join us and help shape the future of digital integration</p>
+        </div>
+        <div class="positions-list">
+            {% for position in open_positions %}
+            <div class="position-card">
+                <div class="position-header">
+                    <h3>{{ position.title }}</h3>
+                    <div class="position-meta">
+                        <span class="meta-tag"><i class="fas fa-building"></i> {{ position.department }}</span>
+                        <span class="meta-tag"><i class="fas fa-map-marker-alt"></i> {{ position.location }}</span>
+                        <span class="meta-tag"><i class="fas fa-clock"></i> {{ position.type }}</span>
+                        <span class="meta-tag"><i class="fas fa-briefcase"></i> {{ position.experience }}</span>
+                    </div>
+                </div>
+                <p class="position-description">{{ position.description }}</p>
+                
+                <div class="position-details">
+                    <div class="details-column">
+                        <h4>Key responsibilities</h4>
+                        <ul>
+                            {% for item in position.responsibilities %}
+                            <li><i class="fas fa-check-circle"></i> {{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="details-column">
+                        <h4>Requirements</h4>
+                        <ul>
+                            {% for item in position.requirements %}
+                            <li><i class="fas fa-check-circle"></i> {{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="position-footer">
+                    <a href="{{ position.apply_url }}" class="button-primary">Apply now</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="values-section">
+    <div class="container">
+        <div class="values-content">
+            <h2>Our values in action</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <div class="value-number">01</div>
+                    <h3>Customer obsessed</h3>
+                    <p>We build products that solve real problems for real people.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">02</div>
+                    <h3>Ownership mindset</h3>
+                    <p>Every team member takes responsibility for outcomes.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">03</div>
+                    <h3>Continuous improvement</h3>
+                    <p>We never stop learning, iterating, and getting better.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-number">04</div>
+                    <h3>Inclusive culture</h3>
+                    <p>Diverse perspectives make us stronger and more innovative.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Don't see the right role?</h2>
+            <p>We are always looking for talented people. Send us your resume.</p>
+            <a href="/contact/" class="button-primary">Send speculative application</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
